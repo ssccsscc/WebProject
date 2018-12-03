@@ -27,7 +27,15 @@ namespace WpfApplication2
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            Battlefield battlefield = new Battlefield(canvas1);
+            battlefield.Draw();
 
+            battlefield.field[0, 0] = 1;
+            battlefield.field[1, 0] = 1;
+            battlefield.field[5, 5] = 1;
+            battlefield.field[5, 6] = 1;
+            battlefield.field[5, 7] = 1;
+            battlefield.Draw();
         }
     }
 }

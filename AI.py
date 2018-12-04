@@ -1,6 +1,5 @@
 from anytree import *
 import os
-import time
 import random
 
 clear = lambda: os.system('cls')
@@ -63,21 +62,20 @@ class Battlefield:
 				
     def AroundCrest(self, i):
         return [(i[0] + 1, i[1]), (i[0] - 1, i[1]), (i[0], i[1] + 1), (i[0], i[1] - 1)]
-		
-    def ClearTilesCrest(self, i):
-        fin = []
-        for j in self.AroundCrest(i):
-            if self.isClear(j[0], j[1]):
-                fin += (j[0], j[1])
-        return fin
-			
 
-    def ClearTileAround(self, i):
+    def ExtendAroundCrest(self, i):
+        return [(i[0] + 1, i[1]), (i[0] - 1, i[1]), (i[0], i[1] + 1), (i[0], i[1] - 1), (i[0] + 2, i[1]), (i[0] - 2, i[1]), (i[0], i[1] + 2), (i[0], i[1] - 2)]
+
+
+    def ClearTile(self, list):
+        if type(list) is tuple:
+            return  self.isClear(list[0], list[1])
         fin = []
-        for j in self.Around(i):
+        for j in list:
             if self.isClear(j[0], j[1]):
-                fin += (j[0], j[1])
+                fin.append((j[0], j[1]))
         return fin
+
 
     def Backup(self):
         self.Backlog.append(self.Matrix.copy(), self.Tactic.copy())
@@ -88,21 +86,21 @@ class Battlefield:
 
     def Response(self, x, y, step=0, stepy=0):
 
-        k = int(input('# 0 - missed\n# 1 - damaged\n# 2 - killed\n'))
-        if k == 0:
+        k = (input('# 0 - missed\n# 1 - damaged\n# 2 - killed\n'))
+        if k in {'0', '`', 'ё'}:
 
             self.Matrix[x + step][y + stepy].missed()
             self.Missed()
-        elif k == 1:
+        elif k == '1':
 
             self.Matrix[x + step][y + stepy].damaged()
             self.Damaged(x + step, y + stepy)
-        elif k == 2:
+        elif k == '2':
 
             self.Matrix[x + step][y + stepy].killed()
             self.Killed()
-        elif k == 3:
-            self.Restore()
+        #elif k == 3:
+        #   self.Restore()
 
 
         #print(RenderTree(self.DamageTree))
@@ -248,32 +246,34 @@ class Battlefield:
             self.AI = self.DamageTree.children[random.randint(0, len(self.DamageTree.children) - 1)]
             return [self.AI.i, self.AI.j]
         else:
-            pick = self.Tactic.pop()
-            stayfrosty = True
-            while not self.isClear(pick[0], pick[1]) or not stayfrosty:
+            #pick = self.Tactic.pop()
+            stayfrosty = False
+            while not stayfrosty:
                 pick = self.Tactic.pop()
                 if not self.isClear(pick[0], pick[1]):
                    continue
                 stayfrosty = True
-                if self.Ships.count(1) == 0:
-                    if len(self.ClearTilesCrest(pick)) == 0:
+                if self.Ships.count(2) == 0 and self.Ships.count(1) == 0 and self.Ships.count(3) == 0:
+                    Tiles = self.ClearTile(self.ExtendAroundCrest(pick))
+                    tilesx = list(filter(lambda x: x[1] == pick[1], Tiles))
+                    tilesy = list(filter(lambda x: x[0] == pick[0], Tiles))
+                    if len(tilesx) >= 3 or len(tilesy) >= 3:
+                        stayfrosty = True
+                    else:
                         stayfrosty = False
-				########
-				########
-				########
                 if self.Ships.count(2) == 0 and self.Ships.count(1) == 0:
-                    Tiles = self.ClearTileAround(pick)
-                    if len(Tiles) == 1:
+                    Tiles = self.ClearTile(self.AroundCrest(pick))
+                    if len(Tiles) <= 1:
                         stayfrosty = False
-                    elif len(Tiles) >= 2 and len(Tiles) <= 6:
-                        for i in range(0, len(Tiles)):
-                            for j in range(i+1, len(Tiles)):
-                                if  not ((Tiles[i][1] == pick[1] and Tiles[j][1] == pick[1]
-                                          and abs(Tiles[i][1] - Tiles[j][1]) == 2
-                                    and abs(Tiles[i][0] - Tiles[j][0]) == 0) or (Tiles[i][0] == pick[0]
-                                            and Tiles[j][0] == pick[0] and abs(Tiles[i][0] - Tiles[j][0]) == 2
-                                    and abs(Tiles[i][1] - Tiles[j][1]) == 0)):
-                                    stayfrosty = False
+                    elif len(Tiles) == 2:
+                        if abs(Tiles[0][0] - Tiles[1][0]) == 1 and abs(Tiles[0][1] - Tiles[1][1]) == 1:
+                            stayfrosty = False
+                    else:
+                        stayfrosty = True
+                elif self.Ships.count(1) == 0:
+                    if len(self.ClearTile(self.AroundCrest(pick))) == 0:
+                        stayfrosty = False
+                #if self.Ships.count()
                 '''
                 Дописать для 3 и 4
                 '''
@@ -331,7 +331,9 @@ d = Node(parent=batya, i=0, j=0, name='d')
 
 #find(batya, lambda node: node.name == 'f').parent = None
 #print([1,1,1,1,2,2,2,3,3,4].remove(4))
-d = [1,1,1,1,2,2,2,3,3,4]
+d = [1,1,1,1,2,2,2,3,3,4, -1]
+d.sort()
+print(d)
 #print((0, 0)[1])
 #print(d.pop())
 #print(d)

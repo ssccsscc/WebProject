@@ -42,7 +42,7 @@ class Battlefield:
         self.DamageList = []
         self.LastShot = []
         self.Tactic = []
-        self.LoadTactic()
+        self.DefaultTactic()
 
     def __str__(self):
         fin = ''
@@ -88,23 +88,17 @@ class Battlefield:
 
         k = (input('# 0 - missed\n# 1 - damaged\n# 2 - killed\n'))
         if k in {'0', '`', 'ё'}:
-
             self.Matrix[x + step][y + stepy].missed()
             self.Missed()
         elif k == '1':
-
             self.Matrix[x + step][y + stepy].damaged()
             self.Damaged(x + step, y + stepy)
         elif k == '2':
-
             self.Matrix[x + step][y + stepy].killed()
             self.Killed()
-        #elif k == 3:
-        #   self.Restore()
 
 
-        #print(RenderTree(self.DamageTree))
-       # print(self.DamageTree.height)
+
 
     def Volley(self, x, y):
         coordinats = [x, y]#self.Decide()
@@ -273,14 +267,11 @@ class Battlefield:
                 elif self.Ships.count(1) == 0:
                     if len(self.ClearTile(self.AroundCrest(pick))) == 0:
                         stayfrosty = False
-                #if self.Ships.count()
-                '''
-                Дописать для 3 и 4
-                '''
+
             return [pick[0], pick[1]]
 
 
-    def LoadTactic(self):
+    def DefaultTactic(self):
         l = []
         for i in range(0, 4):
             if (i < 4-2):
@@ -296,12 +287,8 @@ class Battlefield:
             self.Tactic.append((i, 7+2-i))
         for i in range(9, -1, -1):
             l.append((i, 9-i))
-
-        #print(l)
         random.shuffle(l)
         random.shuffle(self.Tactic)
-
-
         list = []
         for i in range(0, 10):
             for j in range(0, 10):
@@ -313,7 +300,8 @@ class Battlefield:
         self.Tactic.reverse()
         #print(self.Tactic)
 
-
+    def SmartTactic(self):
+        self.DefaultTactic()
 
 
 battlefild = Battlefield()
@@ -334,21 +322,9 @@ d = Node(parent=batya, i=0, j=0, name='d')
 d = [1,1,1,1,2,2,2,3,3,4, -1]
 d.sort()
 print(d)
-#print((0, 0)[1])
-#print(d.pop())
-#print(d)
-#print(d.count(3))
 
-
-#print(RenderTree(batya))
-
-
-#w = Walker()
-
-#print(w.walk(f, c))
 
 print(battlefild)
-#battlefild.Volley(int(input()), int(input()))
+
 while battlefild.Ships != []:
-    #print(battlefild)
     battlefild.VolleyD()

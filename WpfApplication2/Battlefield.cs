@@ -48,6 +48,11 @@ namespace WpfApplication2
                         case 1:
                             item.Source = new BitmapImage(new Uri("Sprites/ship.png", UriKind.Relative));
                             break;
+                        case 2:
+                            item.Source = new BitmapImage(new Uri("Sprites/cross.png", UriKind.Relative));
+                            break;
+                        case 3: item.Source = new BitmapImage(new Uri("Sprites/fire.png", UriKind.Relative));
+                            break;
                         default:
                             break;
                     }

@@ -34,7 +34,11 @@ namespace WpfApplication2
             battlefield.field[1, 0] = 1;
             battlefield.field[5, 5] = 1;
             battlefield.field[5, 6] = 1;
+
             battlefield.field[5, 7] = 1;
+            battlefield.field[5, 6] = 2;
+            battlefield.field[8, 8] = 3;
+
             battlefield.Draw();
         }
     }

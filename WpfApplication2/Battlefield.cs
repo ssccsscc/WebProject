@@ -17,7 +17,7 @@ using System.Threading;
 
 namespace WpfApplication2
 {
-    class Battlefield
+    public class Battlefield
     {
         public int[,] field = new int[10, 10]; //Представление поля для удобного взаимодействия снаружи
         //public Cell[,] field_imgs = new Cell[10, 10]; //Массив картинок для отрисовки

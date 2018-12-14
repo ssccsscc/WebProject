@@ -7,21 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="579.458" Width="972.248">
     <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="79,59,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
         <Canvas x:Name="canvas1" HorizontalAlignment="Left" Height="100" Margin="211,59,0,0" VerticalAlignment="Top" Width="100"/>
         <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="100" Margin="589,59,0,0" VerticalAlignment="Top" Width="100"/>
 
-        <Button x:Name="button1" Content="Новая игра" HorizontalAlignment="Left" Margin="36,285,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="23,325,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="39"/>
-        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="79,325,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.67,0.387"/>
-        <Button x:Name="button2" Content="Внести ход" HorizontalAlignment="Left" Margin="123,325,0,0" VerticalAlignment="Top" Width="77" Click="button2_Click"/>
-        <Label x:Name="label" Content="Результат" HorizontalAlignment="Left" Margin="34,353,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="-" HorizontalAlignment="Left" Margin="96,353,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label_shoot" Content="-" HorizontalAlignment="Left" Margin="107,410,0,0" VerticalAlignment="Top" Width="74"/>
-        <TextBox x:Name="textbox_shoot" HorizontalAlignment="Left" Height="23" Margin="34,441,0,0" TextWrapping="Wrap" Text="Результат_выстрела" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="button_enter_result" Content="Button" HorizontalAlignment="Left" Margin="159,445,0,0" VerticalAlignment="Top" Width="75" Click="button_enter_result_Click"/>
-        <Label Content="0 - missed&#xD;&#xA;1 - damaged&#xD;&#xA;2 - killed" HorizontalAlignment="Left" Margin="36,469,0,0" VerticalAlignment="Top"/>
-        <Label Content="Стреляем:" HorizontalAlignment="Left" Margin="36,410,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button1" Content="Новая игра" HorizontalAlignment="Left" Margin="69,411,0,0" VerticalAlignment="Top" Width="96" Click="button1_Click" Height="66"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="211,417,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="39"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="267,417,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.67,0.387"/>
+        <Button x:Name="button2" Content="Внести ход" HorizontalAlignment="Left" Margin="311,417,0,0" VerticalAlignment="Top" Width="77" Click="button2_Click" Height="23"/>
+        <Label x:Name="label" Content="Результат" HorizontalAlignment="Left" Margin="222,445,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="-" HorizontalAlignment="Left" Margin="284,445,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_shoot" Content="-" HorizontalAlignment="Left" Margin="705,411,0,0" VerticalAlignment="Top" Width="74"/>
+        <TextBox x:Name="textbox_shoot" HorizontalAlignment="Left" Height="23" Margin="640,441,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="37" Text="0"/>
+        <Button x:Name="button_enter_result" Content="Внести ход" HorizontalAlignment="Left" Margin="682,442,0,0" VerticalAlignment="Top" Width="75" Click="button_enter_result_Click" Height="22"/>
+        <Label Content="0 - missed&#xD;&#xA;1 - damaged&#xD;&#xA;2 - killed" HorizontalAlignment="Left" Margin="784,399,0,0" VerticalAlignment="Top"/>
+        <Label Content="Стреляем:" HorizontalAlignment="Left" Margin="634,411,0,0" VerticalAlignment="Top"/>
+        <Label Content="По нам стреляют" HorizontalAlignment="Left" Margin="211,386,0,0" VerticalAlignment="Top"/>
+        <Label Content="Мы стреляем" HorizontalAlignment="Left" Margin="634,386,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

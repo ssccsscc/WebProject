@@ -29,16 +29,15 @@ namespace WpfApplication2
         string gl_info_input;
         bool gl_changed = false;
         string gl_result="";
-        int gl_j;
         Battlefield EnemyField;
 
 
         public MainWindow()
         {
-            
             InitializeComponent();
             Thread th1 = new Thread(TH1);
             EnemyField = new Battlefield(canvas2);
+            EnemyField.Draw();
             th1.Start();
 
             //run_cmd(@"AI.py", "");
@@ -46,7 +45,6 @@ namespace WpfApplication2
 
         public void TH1()
         {
-
             run_cmd(@"AI.py", "");
         }
 
@@ -86,8 +84,6 @@ namespace WpfApplication2
                                 }
                                 Console.WriteLine(result);
                             }
-
-
                         }
                         else
                         {
@@ -125,9 +121,6 @@ namespace WpfApplication2
         void Out_from_python()
         {
             label_shoot.Content = gl_info_output;
-
-           
-
         }
 
         void button_enter_result_Click(object sender, RoutedEventArgs e)
@@ -146,7 +139,6 @@ namespace WpfApplication2
             else if (Convert.ToInt32(textbox_shoot.Text) == 1 || Convert.ToInt32(textbox_shoot.Text) == 2)
                 EnemyField.field[Convert.ToInt32(Convert.ToString(gl_info_output[0])), Convert.ToInt32(Convert.ToString(gl_info_output[2]))] = 3;
             EnemyField.Draw();
-
 
             //int column = 0;
             //for (int k = 4; k < 32; k += 3)

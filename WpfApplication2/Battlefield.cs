@@ -22,8 +22,8 @@ namespace WpfApplication2
         public int[,] field = new int[10, 10]; //Представление поля для удобного взаимодействия снаружи
         //public Cell[,] field_imgs = new Cell[10, 10]; //Массив картинок для отрисовки
 
-        Canvas fieldcanvas;
-        public Battlefield(Canvas canvas1) //0 - вода, 1 - кораблик, 2 - крестик, 3 - взрыв
+        public Canvas fieldcanvas;
+        public Battlefield(Canvas canvas1) //0 - вода, 1 - кораблик, 2 - крестик, 3 - взрыв, 4 - ?, 5 - промах
         {
             for (int i = 0; i < 10; i++) 
                 for (int j = 0; j < 10; j++)
@@ -51,7 +51,14 @@ namespace WpfApplication2
                         case 2:
                             item.Source = new BitmapImage(new Uri("Sprites/cross.png", UriKind.Relative));
                             break;
-                        case 3: item.Source = new BitmapImage(new Uri("Sprites/fire.png", UriKind.Relative));
+                        case 3:
+                            item.Source = new BitmapImage(new Uri("Sprites/fire.png", UriKind.Relative));
+                            break;
+                        case 4:
+                            item.Source = new BitmapImage(new Uri("Sprites/whoa.png", UriKind.Relative));
+                            break;
+                        case 5:
+                            item.Source = new BitmapImage(new Uri("Sprites/miss.png", UriKind.Relative));
                             break;
                         default:
                             break;

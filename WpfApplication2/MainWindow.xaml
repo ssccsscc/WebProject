@@ -9,6 +9,12 @@
     <Grid>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="79,59,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
         <Canvas x:Name="canvas1" HorizontalAlignment="Left" Height="100" Margin="211,77,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="button1" Content="Новая игра" HorizontalAlignment="Left" Margin="36,285,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="23,325,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="39"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="79,325,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.67,0.387"/>
+        <Button x:Name="button2" Content="Внести ход" HorizontalAlignment="Left" Margin="123,325,0,0" VerticalAlignment="Top" Width="77" Click="button2_Click"/>
+        <Label x:Name="label" Content="Результат" HorizontalAlignment="Left" Margin="36,353,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="-" HorizontalAlignment="Left" Margin="96,353,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

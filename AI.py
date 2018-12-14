@@ -230,9 +230,9 @@ class Battlefield:
         if self.DamageTree != None:
             #print(RenderTree(self.DamageTree))
             for i in self.DamageTree.children:
-                if self.Ships.count(2) == 0 and i.height == 0:
+                if self.Ships.count(2) == 0 and self.Ships.count(3) == 0 and self.Ships.count(4) == 0 and i.height == 0:
                     i.parent = None
-                if self.Ships.count(3) == 0 and i.height == 1:
+                if self.Ships.count(3) == 0 and self.Ships.count(4) == 0 and i.height == 1:
                     i.parent = None
                 if self.Ships.count(4) == 0 and i.height == 2:
                     i.parent = None

@@ -2,12 +2,12 @@ from anytree import *
 import os
 import random
 
-clear = lambda: os.system('cls')
 
 class Battlefield:
     class Tile:
         # 0 - unknown # 1 - missed
         # 2 - damaged # 3 - killed
+        # 4 - aim
         def __init__(self):
             self.state = 0
             #self.coordinats = (, d[y])
@@ -25,7 +25,7 @@ class Battlefield:
             self.state = 4
 
         def __str__(self):
-            d = {0: 'O', 1: " ", 2: "X", 3: 'X', 4: '⬛'}
+            d = {0: 'O', 1: " ", 2: "X", 3: 'X', 4: '?'}
             return d[self.state]
 
 
@@ -108,10 +108,10 @@ class Battlefield:
     def VolleyD(self):
         coordinats = self.Decide()
         self.Matrix[coordinats[0]][coordinats[1]].state = 4
-        d = {1:'А', 2:'Б', 3:"В", 4:"Г", 5:"Д", 6:"Е", 7:"Ж", 8:"З", 9:"И", 10:"К"}
+        #d = {1:'А', 2:'Б', 3:"В", 4:"Г", 5:"Д", 6:"Е", 7:"Ж", 8:"З", 9:"И", 10:"К"}
         self.LastShot = coordinats
         print(battlefild)
-        print("{0} {1}".format(coordinats[0]+1, d[coordinats[1]+1]))
+        print("{0} {1}".format(coordinats[0], coordinats[1]))
         self.Response(coordinats[0], coordinats[1])
 
     def Damaged(self, i, j):
@@ -300,8 +300,10 @@ class Battlefield:
         self.Tactic.reverse()
         #print(self.Tactic)
 
-    def SmartTactic(self):
-        self.DefaultTactic()
+    #def SmartTactic(self):
+        #for i in range(0, 10):
+
+        #self.DefaultTactic()
 
 
 battlefild = Battlefield()
@@ -321,10 +323,10 @@ d = Node(parent=batya, i=0, j=0, name='d')
 #print([1,1,1,1,2,2,2,3,3,4].remove(4))
 d = [1,1,1,1,2,2,2,3,3,4, -1]
 d.sort()
-print(d)
+#print(d)
 
 
-print(battlefild)
+#print(battlefild)
 
 while battlefild.Ships != []:
     battlefild.VolleyD()

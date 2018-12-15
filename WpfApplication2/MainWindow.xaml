@@ -23,6 +23,10 @@
         <Label Content="Стреляем:" HorizontalAlignment="Left" Margin="634,411,0,0" VerticalAlignment="Top"/>
         <Label Content="По нам стреляют" HorizontalAlignment="Left" Margin="211,386,0,0" VerticalAlignment="Top"/>
         <Label Content="Мы стреляем" HorizontalAlignment="Left" Margin="634,386,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="А   Б   В   Г   Д   Е   Ж   З   И   К" HorizontalAlignment="Left" Margin="211,22,0,0" VerticalAlignment="Top" FontSize="21.2"/>
+        <Label x:Name="label2_Copy" Content="А   Б   В   Г   Д   Е   Ж   З   И   К" HorizontalAlignment="Left" Margin="589,22,0,0" VerticalAlignment="Top" FontSize="21.2"/>
+        <Label x:Name="label3" Content="1&#xD;&#xA;2&#xD;&#xA;3&#xD;&#xA;4&#xD;&#xA;5&#xD;&#xA;6&#xD;&#xA;7&#xD;&#xA;8&#xD;&#xA;9&#xD;&#xA;10" Margin="171,52,0,51.6" HorizontalAlignment="Left" FontSize="22.8"/>
+        <Label x:Name="label3_Copy" Content="1&#xA;2&#xA;3&#xA;4&#xA;5&#xA;6&#xA;7&#xA;8&#xA;9&#xA;10" Margin="554,52,0,51.6" HorizontalAlignment="Left" FontSize="22.8"/>
 
     </Grid>
 </Window>

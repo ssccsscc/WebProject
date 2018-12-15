@@ -188,7 +188,9 @@ namespace WpfApplication2
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            var result = game.ProcessShot(int.Parse(textBox.Text), int.Parse(textBox_Copy.Text));
+            string arr = "АБВГДЕЗЖИК";
+            
+            var result = game.ProcessShot(arr.IndexOf(textBox_Copy.Text.ToString()[0]), int.Parse(textBox.Text) - 1);
             switch (result)
             {
                 case Game.ShotResult.Missed:

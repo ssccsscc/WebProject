@@ -208,11 +208,13 @@ class Battlefield:
 
 
     def Missed(self):
-        for i in findall(self.DamageTree, filter_=lambda node: node.i == self.AI.i and node.j == self.AI.j):
-            i.parent = None
-
-        self.AI.parent = None
-        self.AI = None
+        try:
+            for i in findall(self.DamageTree, filter_=lambda node: node.i == self.AI.i and node.j == self.AI.j):
+                i.parent = None
+            self.AI.parent = None
+            self.AI = None
+        except:
+            d = "da"
 
 
 
@@ -226,7 +228,6 @@ class Battlefield:
             for j in self.Around(i):
                 if self.isClear(j[0], j[1]):
                     self.Matrix[j[0]][j[1]].state = 1
-
         self.Ships.remove(len(self.DamageList))
         self.DamageList = []
 

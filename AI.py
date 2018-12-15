@@ -57,17 +57,21 @@ class Battlefield:
         return fin
 
     def Around(self, i):
+        # Координаты воокруг клетки i
         return [(i[0] + 1, i[1] - 1), (i[0] + 1, i[1]), (i[0] + 1, i[1] + 1), (i[0], i[1] + 1),
                 (i[0], i[1] - 1), (i[0] - 1, i[1] - 1), (i[0] - 1, i[1]), (i[0] - 1, i[1] + 1)]
 				
     def AroundCrest(self, i):
+        # Координаты по кресту от клетки i
         return [(i[0] + 1, i[1]), (i[0] - 1, i[1]), (i[0], i[1] + 1), (i[0], i[1] - 1)]
 
     def ExtendAroundCrest(self, i):
+        # Координаты по кресту + 1 от клетки i
         return [(i[0] + 1, i[1]), (i[0] - 1, i[1]), (i[0], i[1] + 1), (i[0], i[1] - 1), (i[0] + 2, i[1]), (i[0] - 2, i[1]), (i[0], i[1] + 2), (i[0], i[1] - 2)]
 
 
     def ClearTile(self, list):
+        # Список чистых клеток по листу
         if type(list) is tuple:
             return  self.isClear(list[0], list[1])
         fin = []
@@ -78,34 +82,45 @@ class Battlefield:
 
 
     def Backup(self):
+        # delete this
         self.Backlog.append(self.Matrix.copy(), self.Tactic.copy())
 
     def Restore(self):
+        # delete this
         self.Matrix = self.Backlog[0].copy()
         self.Tactic = self.Backlog[1].copy()
 
     def Response(self, x, y, step=0, stepy=0):
+        # Ожидание ответа
+        b = True
+        while b:
+            k = (input('# 0 - missed\n# 1 - damaged\n# 2 - killed\n'))
 
-        k = (input('# 0 - missed\n# 1 - damaged\n# 2 - killed\n'))
-        if k in {'0', '`', 'ё'}:
-            self.Matrix[x + step][y + stepy].missed()
-            self.Missed()
-        elif k == '1':
-            self.Matrix[x + step][y + stepy].damaged()
-            self.Damaged(x + step, y + stepy)
-        elif k == '2':
-            self.Matrix[x + step][y + stepy].killed()
-            self.Killed()
-
+            if k in {'0', '`', 'ё'}:
+                b = False
+                self.Matrix[x + step][y + stepy].missed()
+                self.Missed()
+            elif k == '1':
+                b = False
+                self.Matrix[x + step][y + stepy].damaged()
+                self.Damaged(x + step, y + stepy)
+            elif k == '2':
+                b = False
+                self.Matrix[x + step][y + stepy].killed()
+                self.Killed()
+            else:
+                continue
 
 
 
     def Volley(self, x, y):
+        # delete this
         coordinats = [x, y]#self.Decide()
         self.LastShot = coordinats
         self.Response(coordinats[0], coordinats[1])
 
     def VolleyD(self):
+        # Выбор координат и срельба
         coordinats = self.Decide()
         self.Matrix[coordinats[0]][coordinats[1]].state = 4
         #d = {1:'А', 2:'Б', 3:"В", 4:"Г", 5:"Д", 6:"Е", 7:"Ж", 8:"З", 9:"И", 10:"К"}
@@ -115,10 +130,12 @@ class Battlefield:
         self.Response(coordinats[0], coordinats[1])
 
     def Damaged(self, i, j):
+        # Действия после дамага клетки
         self.DamageList.append(self.LastShot)
         if len(self.DamageList) == max(self.Ships):
             self.Killed()
             return 0
+        # Если эта первая задамаженная клетка, то идет построение дерева всех возможных вариантов стрельбы
         if self.DamageTree == None:
             self.DamageTree = Node(name='root', i=i, j=j)
             for k in [[i+1, j, 'right'], [i, j+1, 'down'], [i-1, j, 'left'], [i, j-1, 'up']]:
@@ -182,26 +199,25 @@ class Battlefield:
                                     for k in [[t.i, t.j - 3, 'up'], [t.i, t.j + 1, 'down']]:
                                         if self.isClear(k[0], k[1]):
                                             Node(name=k[2], i=k[0], j=k[1], parent=t)
-            #self.AI = self.DamageTree
+        # При последующем попаданиии нод попадания становится рутом
         elif self.DamageTree != None:
             self.AI.parent = None
             self.DamageTree = self.AI
-        #print(RenderTree(self.DamageTree))
+
 
 
 
     def Missed(self):
-        try:
-            for i in findall(self.DamageTree, filter_=lambda node: node.i == self.AI.i and node.j == self.AI.j):
-                i.parent = None
+        for i in findall(self.DamageTree, filter_=lambda node: node.i == self.AI.i and node.j == self.AI.j):
+            i.parent = None
 
-            self.AI.parent = None
-            self.AI = None
-        except:
-            d = 'da'
+        self.AI.parent = None
+        self.AI = None
+
 
 
     def Killed(self):
+        # При убийстве затираем дерево дамага, удаляем корабль из списка и окружаем клетки вокруг корабля воздухом
         if len(self.DamageList) != max(self.Ships):
             self.DamageList.append(self.LastShot)
         self.DamageTree = None
@@ -216,6 +232,7 @@ class Battlefield:
 
 
     def isClear(self, i, j):
+        # Проверка клетки на валидность (пустоту)
         try:
             if self.Matrix[i][j].state == 0 and (i in range(0, 10) and (j in range(0, 10))):
                 return True
@@ -226,9 +243,9 @@ class Battlefield:
 
 
     def Decide(self):
-        #print(self.DamageTree)
+        # Выбор клетки для стрельбы
         if self.DamageTree != None:
-            #print(RenderTree(self.DamageTree))
+            # Отрезание невозможных нодов
             for i in self.DamageTree.children:
                 if self.Ships.count(2) == 0 and self.Ships.count(3) == 0 and self.Ships.count(4) == 0 and i.height == 0:
                     i.parent = None
@@ -236,11 +253,11 @@ class Battlefield:
                     i.parent = None
                 if self.Ships.count(4) == 0 and i.height == 2:
                     i.parent = None
-            #print(len(self.DamageTree.children))
             self.AI = self.DamageTree.children[random.randint(0, len(self.DamageTree.children) - 1)]
             return [self.AI.i, self.AI.j]
         else:
-            #pick = self.Tactic.pop()
+            # Достаем клетку из списка и работаем с ней
+            #
             stayfrosty = False
             while not stayfrosty:
                 pick = self.Tactic.pop()
@@ -272,6 +289,7 @@ class Battlefield:
 
 
     def DefaultTactic(self):
+        # Загрузка тактики стрельбы по диагонали
         l = []
         for i in range(0, 4):
             if (i < 4-2):
@@ -298,35 +316,12 @@ class Battlefield:
         random.shuffle(list)
         self.Tactic += l + list
         self.Tactic.reverse()
-        #print(self.Tactic)
 
-    #def SmartTactic(self):
-        #for i in range(0, 10):
-
-        #self.DefaultTactic()
 
 
 battlefild = Battlefield()
 
-batya = Node(name='root')
-f = Node(parent=batya, i=0, j=0, name='f')
-c = Node(parent=f, i=1, j=0, name='c')
-g = Node(parent=c, i=0, j=0, name='g')
-d = Node(parent=batya, i=0, j=0, name='d')
-#print(batya.height)
-#print(10 in range(0, 10))
-#if f != None:
-#    print(RenderTree(batya))
-    #print(batya.children[1])
 
-#find(batya, lambda node: node.name == 'f').parent = None
-#print([1,1,1,1,2,2,2,3,3,4].remove(4))
-d = [1,1,1,1,2,2,2,3,3,4, -1]
-d.sort()
-#print(d)
-
-
-#print(battlefild)
-
-while battlefild.Ships != []:
-    battlefild.VolleyD()
+if __name__ == "__main__":
+    while battlefild.Ships != []:
+        battlefild.VolleyD()

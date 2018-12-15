@@ -121,8 +121,7 @@ namespace WpfApplication2
         void Out_from_python()
         {
             string arr = "АБВГДЕЗЖИК";
-            
-            label_shoot.Content = string.Format("{1} {0}", int.Parse(gl_info_output[0].ToString()) + 1, arr[int.Parse(gl_info_output[2].ToString())]) ;
+            label_shoot.Content = string.Format("{1} {0}", int.Parse(gl_info_output[0].ToString()) + 1, arr[int.Parse(gl_info_output[2].ToString())]);
         }
 
         void button_enter_result_Click(object sender, RoutedEventArgs e)

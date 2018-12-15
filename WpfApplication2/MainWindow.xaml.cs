@@ -120,8 +120,8 @@ namespace WpfApplication2
 
         void Out_from_python()
         {
-            string arr = "АБВГДЕЗЖИК";
-            label_shoot.Content = string.Format("{1} {0}", int.Parse(gl_info_output[0].ToString()) + 1, arr[int.Parse(gl_info_output[2].ToString())]);
+            string arr = "АБВГДЕЖЗИК";
+            label_shoot.Content = string.Format("{0} {1}", int.Parse(gl_info_output[2].ToString()) + 1, arr[int.Parse(gl_info_output[0].ToString())]);
         }
 
         void button_enter_result_Click(object sender, RoutedEventArgs e)
@@ -187,7 +187,7 @@ namespace WpfApplication2
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            string arr = "АБВГДЕЗЖИК";
+            string arr = "АБВГДЕЖЗИК";
             
             var result = game.ProcessShot(arr.IndexOf(textBox_Copy.Text.ToString()[0]), int.Parse(textBox.Text) - 1);
             switch (result)

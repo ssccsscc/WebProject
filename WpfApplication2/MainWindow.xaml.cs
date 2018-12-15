@@ -52,7 +52,7 @@ namespace WpfApplication2
         public void run_cmd(string cmd, string args)
         {
             ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = @"C:\Users\CloudCatcher\AppData\Local\Programs\Python\Python37\python.exe";
+            start.FileName = @"python";
             start.Arguments = string.Format("{0} {1}", cmd, args);
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;

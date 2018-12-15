@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Threading;
 namespace WpfApplication2
 {
     public class Game
@@ -77,6 +78,69 @@ namespace WpfApplication2
                         if (isCoordinateValid(ship.x + ship.ship.Length, ship.y)) MissedShots.Add(new Coordinates() { x = ship.x + ship.ship.Length, y = ship.y });
                         return ShotResult.Destroyed;
                     }
+
+                    Console.Beep(659, 300);
+                    Console.Beep(659, 300);
+                    Console.Beep(659, 300);
+                    Thread.Sleep(300);
+                    Console.Beep(659, 300);
+                    Console.Beep(659, 300);
+                    Console.Beep(659, 300);
+                    Thread.Sleep(300);
+                    Console.Beep(659, 300);
+                    Console.Beep(783, 300);
+                    Console.Beep(523, 300);
+                    Console.Beep(587, 300);
+                    Console.Beep(659, 300);
+                    Console.Beep(261, 300);
+                    Console.Beep(293, 300);
+                    Console.Beep(329, 300);
+                    Console.Beep(698, 300);
+                    Console.Beep(698, 300);
+                    Console.Beep(698, 300);
+                    Thread.Sleep(300);
+                    Console.Beep(698, 300);
+                    Console.Beep(659, 300);
+                    Console.Beep(659, 300);
+                    Thread.Sleep(300);
+                    Console.Beep(659, 300);
+                    Console.Beep(587, 300);
+                    Console.Beep(587, 300);
+                    Console.Beep(659, 300);
+                    Console.Beep(587, 300);
+                    Thread.Sleep(300);
+                    Console.Beep(783, 300);
+                    Thread.Sleep(300);
+                    Console.Beep(659, 300);
+                    Console.Beep(659, 300);
+                    Console.Beep(659, 300);
+                    Thread.Sleep(300);
+                    Console.Beep(659, 300);
+                    Console.Beep(659, 300);
+                    Console.Beep(659, 300);
+                    Thread.Sleep(300);
+                    Console.Beep(659, 300);
+                    Console.Beep(783, 300);
+                    Console.Beep(523, 300);
+                    Console.Beep(587, 300);
+                    Console.Beep(659, 300);
+                    Console.Beep(261, 300);
+                    Console.Beep(293, 300);
+                    Console.Beep(329, 300);
+                    Console.Beep(698, 300);
+                    Console.Beep(698, 300);
+                    Console.Beep(698, 300);
+                    Thread.Sleep(300);
+                    Console.Beep(698, 300);
+                    Console.Beep(659, 300);
+                    Console.Beep(659, 300);
+                    Thread.Sleep(300);
+                    Console.Beep(783, 300);
+                    Console.Beep(783, 300);
+                    Console.Beep(698, 300);
+                    Console.Beep(587, 300);
+                    Console.Beep(523, 600);
+                    Thread.Sleep(600);
                     return ShotResult.Damaged;
                 }
                 else
@@ -95,6 +159,69 @@ namespace WpfApplication2
                             if (isCoordinateValid(ship.x, ship.y + ship.ship.Length)) MissedShots.Add(new Coordinates() { x = ship.x, y = ship.y + ship.ship.Length });
                             return ShotResult.Destroyed;
                         }
+
+                        Console.Beep(659, 300);
+                        Console.Beep(659, 300);
+                        Console.Beep(659, 300);
+                        Thread.Sleep(300);
+                        Console.Beep(659, 300);
+                        Console.Beep(659, 300);
+                        Console.Beep(659, 300);
+                        Thread.Sleep(300);
+                        Console.Beep(659, 300);
+                        Console.Beep(783, 300);
+                        Console.Beep(523, 300);
+                        Console.Beep(587, 300);
+                        Console.Beep(659, 300);
+                        Console.Beep(261, 300);
+                        Console.Beep(293, 300);
+                        Console.Beep(329, 300);
+                        Console.Beep(698, 300);
+                        Console.Beep(698, 300);
+                        Console.Beep(698, 300);
+                        Thread.Sleep(300);
+                        Console.Beep(698, 300);
+                        Console.Beep(659, 300);
+                        Console.Beep(659, 300);
+                        Thread.Sleep(300);
+                        Console.Beep(659, 300);
+                        Console.Beep(587, 300);
+                        Console.Beep(587, 300);
+                        Console.Beep(659, 300);
+                        Console.Beep(587, 300);
+                        Thread.Sleep(300);
+                        Console.Beep(783, 300);
+                        Thread.Sleep(300);
+                        Console.Beep(659, 300);
+                        Console.Beep(659, 300);
+                        Console.Beep(659, 300);
+                        Thread.Sleep(300);
+                        Console.Beep(659, 300);
+                        Console.Beep(659, 300);
+                        Console.Beep(659, 300);
+                        Thread.Sleep(300);
+                        Console.Beep(659, 300);
+                        Console.Beep(783, 300);
+                        Console.Beep(523, 300);
+                        Console.Beep(587, 300);
+                        Console.Beep(659, 300);
+                        Console.Beep(261, 300);
+                        Console.Beep(293, 300);
+                        Console.Beep(329, 300);
+                        Console.Beep(698, 300);
+                        Console.Beep(698, 300);
+                        Console.Beep(698, 300);
+                        Thread.Sleep(300);
+                        Console.Beep(698, 300);
+                        Console.Beep(659, 300);
+                        Console.Beep(659, 300);
+                        Thread.Sleep(300);
+                        Console.Beep(783, 300);
+                        Console.Beep(783, 300);
+                        Console.Beep(698, 300);
+                        Console.Beep(587, 300);
+                        Console.Beep(523, 600);
+                        Thread.Sleep(600);
                         return ShotResult.Damaged;
                     }
                 }

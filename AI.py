@@ -209,10 +209,11 @@ class Battlefield:
 
     def Missed(self):
         try:
-            for i in findall(self.DamageTree, filter_=lambda node: node.i == self.AI.i and node.j == self.AI.j):
-                i.parent = None
-            self.AI.parent = None
-            self.AI = None
+            if (self.DamageTree != None):
+                for i in findall(self.DamageTree, filter_=lambda node: node.i == self.AI.i and node.j == self.AI.j):
+                    i.parent = None
+                self.AI.parent = None
+                self.AI = None
         except:
             d = "da"
 
